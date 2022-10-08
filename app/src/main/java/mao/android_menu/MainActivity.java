@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -119,8 +120,12 @@ public class MainActivity extends AppCompatActivity
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
         menu.add(1, 16, 1, "16sp");
-        menu.add(1, 24, 2, "24sp");
+        SubMenu subMenu = menu.addSubMenu(1, 0, 2, "24-27sp");
         menu.add(1, 30, 3, "30sp");
+        subMenu.add(1, 24, 1, "24sp");
+        subMenu.add(1, 25, 2, "25sp");
+        subMenu.add(1, 26, 3, "26sp");
+        subMenu.add(1, 27, 4, "27sp");
     }
 
     @Override
@@ -134,6 +139,15 @@ public class MainActivity extends AppCompatActivity
                 break;
             case 24:
                 textView.setTextSize(24);
+                break;
+            case 25:
+                textView.setTextSize(25);
+                break;
+            case 26:
+                textView.setTextSize(26);
+                break;
+            case 27:
+                textView.setTextSize(27);
                 break;
             case 30:
                 textView.setTextSize(30);
