@@ -13,8 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -95,6 +97,48 @@ public class MainActivity extends AppCompatActivity
     public boolean onMenuOpened(int featureId, Menu menu)
     {
         toastShow("菜单打开后");
+        return true;
+    }
+
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        registerForContextMenu(textView);
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        unregisterForContextMenu(textView);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        menu.add(1, 16, 1, "16sp");
+        menu.add(1, 24, 2, "24sp");
+        menu.add(1, 30, 3, "30sp");
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item)
+    {
+        int itemId = item.getItemId();
+        switch (itemId)
+        {
+            case 16:
+                textView.setTextSize(16);
+                break;
+            case 24:
+                textView.setTextSize(24);
+                break;
+            case 30:
+                textView.setTextSize(30);
+                break;
+        }
         return true;
     }
 
